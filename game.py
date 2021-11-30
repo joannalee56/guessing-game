@@ -18,16 +18,22 @@ print(secret_number)
 
 counter = 0
 while True:
-    # Prompt player to guess a number
-    guess_number = int(input("Guess a number between 1 and 100: "))
-    counter += 1
-    if guess_number != secret_number:
-        if guess_number > secret_number:
-            print("Your guess is too high. Try again")
-        else:
-            print("Your guess is too low. Try again")
-    # Ends when the user guesses the right number and displays the number of guesses that the user made
-    else:
-        print(f"Well done, {player_name}! You found my number in {counter} tries!")
-        break
+    try:
+        # Prompt player to guess a number
+        guess_number = int(input("Guess a number between 1 and 100: "))
 
+        if guess_number < 1 or guess_number > 100:
+            print("Out of range. Please enter a valid number between 1 and 100.")
+        else:
+            counter += 1
+            if guess_number != secret_number:
+                if guess_number > secret_number:
+                    print("Your guess is too high. Try again")
+                else:
+                    print("Your guess is too low. Try again")
+            # Ends when the user guesses the right number and displays the number of guesses that the user made
+            else:
+                print(f"Well done, {player_name}! You found my number in {counter} tries!")
+                break
+    except ValueError:
+        print("Oops! That was not a number. Please enter a valid number.")
